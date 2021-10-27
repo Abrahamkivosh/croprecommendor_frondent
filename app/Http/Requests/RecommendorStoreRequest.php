@@ -29,8 +29,8 @@ class RecommendorStoreRequest extends FormRequest
             'potassium'=>'required|numeric|max:100|min:0',
             'temperature'=>'required|numeric|max:100|min:0',
             'humidity'=>'required|numeric|max:100|min:0',
-            'ph'=>'required|numeric|max:100|min:0',
-            'rainfall'=>'required|numeric|max:100|min:0',   
+            'ph'=>'required|numeric|max:14|min:0',
+            'rainfall'=>'required|numeric|max:1000|min:0',   
             'location'=>'required|string'         
         ];
     }
