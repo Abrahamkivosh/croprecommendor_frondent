@@ -70,17 +70,19 @@
                                   <label for="role">Role</label>
                                   <select id="role" class="form-control" name="role">
                                       <option selected value="{{ $user->role }}"  > {{ ($user->role == 1)? "Admin" : "User" }} </option>
+                                      @if (auth()->user()->isAdmin())
                                       <option value="1">Admin</option>
                                       <option value="2">User</option>
+                                          
+                                      @endif
+                                      
                                   </select>
                               </div>
 
                         </div>
 
                         
-
-                      
-
+                        @if (  ! auth()->user()->isAdmin() || auth()->user()->id == $user->id )
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <label for="old_password"> Old Password</label>
@@ -93,6 +95,12 @@
                                 @enderror
                             </div>
                         </div>
+                            
+                        @endif
+
+                      
+
+                        
 
 
 

@@ -99,7 +99,7 @@ class HomeController extends Controller
 
         $data = $request->validated();
         $user = User::find($user_id) ;
-        if (! Hash::check($data["old_password"], $user->password) ) {
+        if ( ! Auth::user()->isAdmin()  && ! Hash::check($data["old_password"], $user->password)) {
             return back()->withInput(["name", "email","role"])->with("error","Incorrect Old Password!") ;
         }
 
