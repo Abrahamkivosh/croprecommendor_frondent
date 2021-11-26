@@ -29,68 +29,95 @@
             <!-- ============================================================== -->
             <div class="row">
                 <div class="col-12">
-                   
-                   
+                    <form action="{{ route('update.user',$user->id) }}" method="POST" enctype="multipart/form-data" >
+                        @csrf
+                        @method("PUT")
+                        <div class="row">
 
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Data Export 
-
-                                 <!-- Button trigger modal to add user -->
-                    <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#modeladdUser">
-                        Add User
-                      </button>
+                            <div class="form-group col-6">
+                                <label for="my-input">Name</label>
+                                <input id="name" placeholder="User Name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+                
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+        
                             
-                            </span> </h4>
-                            <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
-                            <div class="table-responsive m-t-40">
-                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr role="row">
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Recommends</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr role="row">
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Recommends</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>  {{  ($user->isAdmin()) ? "Admin" : "User" }}  </td>
-                                            <td>{{ $user->recommends_count }}</td>
-                                            <td>
-                                                <a href="{{ route( 'show.user', $user) }}"
-                                        class="btn btn-info foat-left"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <div class="form-group col-6 ">
+                                <div class="col-xs-12">
+                                    <label for="memail">Email</label>
+                                    <input id="email" placeholder="Your Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+                
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
-                                    <a href="{{ route('destroy.users', $user) }}"
-                                        class="btn btn-danger float-right"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="row">
 
-                                            </td>
-                                        </tr>
-                                            
-                                        @endforeach
-                                        
-                                        
-                                    </tbody>
-                                </table>
+                            <div class="form-group col-6 ">
+                                <label for="">Profile Image</label>
+                                <input type="file" class="form-control-file" name="image" id="image" placeholder="image" >
+                              </div>
+                              <div class="form-group col-6 ">
+                                  <label for="role">Role</label>
+                                  <select id="role" class="form-control" name="role">
+                                      <option selected value="{{ $user->role }}"  > {{ ($user->role == 1)? "Admin" : "User" }} </option>
+                                      <option value="1">Admin</option>
+                                      <option value="2">User</option>
+                                  </select>
+                              </div>
+
+                        </div>
+
+                        
+
+                      
+
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <label for="old_password"> Old Password</label>
+                                <input id="old_password" type="password" placeholder="Old Password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" required autocomplete="new-old_password">
+            
+                                @error('old_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
-                    </div>
-                   
 
+
+
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <label for="password"> New  Password</label>
+                                <input id="password" type="password" placeholder="Strong Password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+            
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                  
+                       
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
+                                    Update profile</button>
+                            </div>
+                        </div>
+                     
+                    </form>
                 </div>
             </div>
             <!-- ============================================================== -->

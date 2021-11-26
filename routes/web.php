@@ -26,6 +26,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     
     Route::get('system-users',[HomeController::class,'systemUsers'])->name('system.users');
+    Route::get('system-users/show/{user}',[HomeController::class,'show'])->name('show.user');
+
+    Route::put('system-users-update/{userId}',[HomeController::class,'systemUserUpdate'])->name('update.user');
+
     Route::post('system-users-register',[HomeController::class,'systemUsersRegister'])->name('register-user');
     Route::get('system-users-destroy',[HomeController::class,'destroy'])->name('destroy.users');
 
