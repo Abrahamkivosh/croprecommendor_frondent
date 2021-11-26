@@ -56,7 +56,9 @@
               
                 <li class="nav-small-cap">--- RECOMMENDOR</li>
                 <li> <a class="waves-effect waves-dark" href="{{ route('recommend.index') }}" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">My Analytics</span></a></li>
-                <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i class="fa fa-circle-o text-success"></i><span class="hide-menu">Reports</span></a></li>
+                @if ( auth()->user()->isAdmin() )
+                <li> <a class="waves-effect waves-dark" href="{{ route('recommends.all') }}" aria-expanded="false"><i class="fa fa-circle-o text-success"></i><span class="hide-menu">All users Recommends</span></a></li>
+                @endif
                 <li> <a class="waves-effect waves-dark" href="{{ route('recommend.create') }}" aria-expanded="false"><i class="fa fa-circle-o text-info"></i><span class="hide-menu">Do Recommend</span></a></li>
             </ul>
         </nav>

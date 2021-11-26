@@ -31,7 +31,8 @@
                 <div class="col-12">
 
                     <div class="jumbotron">
-                        <h2 class="display-3">{{ $recommend->label }}</h2>
+                        <h3> Owner :  {{ $recommend->user->name }} -  <span> {{  ($recommend->user->isAdmin()) ? "Admin" : "User" }} </span> </h3>
+                        <h3 class=" capitalize " >Crop Name : {{ $recommend->label }}</h3>
                         <p class="lead">Location : {{ $recommend->location }}</p>
                         <hr class="my-2">
                         <p>

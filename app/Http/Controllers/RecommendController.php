@@ -13,6 +13,11 @@ use App\Http\Requests\RecommendorStoreRequest;
 
 class RecommendController extends Controller
 {
+    public function allRecommends(){
+        $recommends = Recommend::latest()->get();
+        return view("recommend.analytic.all",compact('recommends'));
+ 
+    }
     /**
      * Display a listing of the resource.
      *

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecommendController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/dashboard',fn()=>view("recommend.dashboard")) ;
 Route::middleware(['auth'])->group(function () {
+    
+    Route::get('system-users',[HomeController::class,'systemUsers'])->name('system.users');
+    Route::post('system-users-register',[HomeController::class,'systemUsersRegister'])->name('register-user');
+    Route::get('system-users-destroy',[HomeController::class,'destroy'])->name('destroy.users');
+
+    Route::get('all-recommends',[RecommendController::class,'allRecommends'])->name('recommends.all');
     Route::resource('recommend', RecommendController::class);
 });
