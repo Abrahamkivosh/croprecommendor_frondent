@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'image',
         'email',
+        'role',
         'password',
     ];
 
@@ -50,5 +51,15 @@ class User extends Authenticatable
     public function recommends()
     {
         return $this->hasMany(Recommend::class, 'user_id', 'id');
+    }
+    /**
+     * determine current instance is of admin
+     * 1 == admin
+     * 2 == user
+     */
+    public function isAdmin()
+    {
+        $isAdmin = ( $this->role == 1 ) ? true : false ;
+        return $isAdmin ;
     }
 }
