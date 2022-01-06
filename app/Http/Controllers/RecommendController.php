@@ -52,7 +52,7 @@ class RecommendController extends Controller
                 'accept'=> 'application/json'
             ];
             
-            $recommend = Http::asForm()->withHeaders($headers)->post($url,$data)->body() ;
+            $recommend = Http::asForm()->withHeaders($headers)->get($url,$data)->body() ;
             $recommend= Str::of($recommend)->between("\"","\"") ;
             $data["label"] = $recommend ;
             $data["user_id"] = Auth::user()->id ;
