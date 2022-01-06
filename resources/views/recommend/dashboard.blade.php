@@ -29,6 +29,7 @@
         <!-- ============================================================== -->
         <div class="row">
             <!-- Column -->
+            @if (auth()->user()->role == 1)
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -43,6 +44,9 @@
                     <div id="sparkline8" class="sparkchart"></div>
                 </div>
             </div>
+                
+            @endif
+            
             <!-- Column -->
             <div class="col-lg-3 col-md-6">
                 <div class="card">
@@ -59,6 +63,7 @@
                 </div>
             </div>
             <!-- Column -->
+            @if (auth()->user()->role == 1)
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -73,8 +78,12 @@
                     <div id="sparkline8" class="sparkchart"></div>
                 </div>
             </div>
+                
+            @endif
+           
             <!-- Column -->
             <!-- Column -->
+            @if (auth()->user()->role == 1)
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -89,6 +98,9 @@
                     <div id="sparkline8" class="sparkchart"></div>
                 </div>
             </div>
+                
+            @endif
+        
             <!-- Column -->
         </div>
         <!-- ============================================================== -->
@@ -111,7 +123,16 @@
                     </div>
                     <div class="card-body bg-light">
                         <div class="d-flex no-block align-items-center">
-                            <span><h2 class="">Monday</h2><small>7th May 2017</small></span>
+                            <span><h2 class="">
+                                 @php
+                                    echo date("l")
+                                @endphp 
+                            </h2><small>
+                                @php
+                                    echo date("dS F Y")
+                                @endphp
+                                
+                               </small></span>
                             <div class="ml-auto">
                                 <canvas class="sleet" width="44" height="44"></canvas> <span class="display-6">32<sup>°F</sup></span> </div>
                         </div>
@@ -225,13 +246,9 @@
                                     <th>Amount</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Tracking Number</th> --}}
-
+                                    <th>User</th>
                                     <th>Plant</th>
                                     <th>Location</th>
-                                    <th>N</th>
-                                    <th>P</th>
-                                    <th>K</th>
-                                    <th>Temp</th>
                                     <th>Date</th>
                                     <th>Actions</th>
 
@@ -240,13 +257,11 @@
                             <tbody>
                                 @forelse ($recommends as $recommend)
                                 <tr role="row" >
+                                    <td> <a href="{{route('users.show', $recommend->user ?? 1 )}}"></a> {{ $recommend->user->name ?? ""}} </td>
                                     <td class="sorting_1">{{ $recommend->label }}</td>
                                     <td>{{ $recommend->location }}</td>
     
-                                    <td>{{ $recommend->nitrogen }}</td>
-                                    <td>{{ $recommend->phosphorus }}</td>
-                                    <td>{{ $recommend->potassium }}</td>
-                                    <td>{{ $recommend->temperature }}</td>
+                        
                                     <td>{{ $recommend->created_at->format('d / M / Y') }}</td>
                                     <td>
                                         <a href="{{ route('recommend.show', $recommend) }}"

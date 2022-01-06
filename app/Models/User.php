@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recommend::class, 'user_id', 'id');
     }
+    public function countRecommends()
+    {
+        # code...
+        return $this->recommends->count();
+    }
 }

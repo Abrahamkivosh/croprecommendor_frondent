@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecommendController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/dashboard',fn()=>view("recommend.dashboard")) ;
 Route::middleware(['auth'])->group(function () {
     Route::resource('recommend', RecommendController::class);
+    Route::resource('users', UserController::class);
 });

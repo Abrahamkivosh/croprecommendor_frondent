@@ -25,7 +25,8 @@ class CreateRecommendsTable extends Migration
             $table->string('rainfall', 100);
             $table->string("label",100);
             $table->string('location', 100);
-            $table->foreignIdFor(User::class,"user_id");
+            $table->foreignIdFor(User::class,"user_id") ;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
